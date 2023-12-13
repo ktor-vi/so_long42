@@ -17,10 +17,10 @@ void	key_press(struct mlx_key_data keycode, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if ((keycode.key == MLX_KEY_ESCAPE && keycode.action == MLX_RELEASE))
+	if (keycode.key == MLX_KEY_ESCAPE && keycode.action == MLX_RELEASE)
 	{
 		terminate_all(game);
-		exit(0);
+		exit(1);
 	}
 	else if (keycode.key == MLX_KEY_W && (keycode.action == MLX_REPEAT
 			|| keycode.action == MLX_RELEASE))

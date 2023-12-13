@@ -24,12 +24,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_putendl_fd("so_long accepts one argument only", 2), 1);
 	game = (t_game){0};
-	file_check(argv[1]);
 	init_game(&game, argv);
 	verify(&game);
 	init_display(&game);
 	mlx_key_hook(game.mlx, &key_press, &game);
-	mlx_close_hook(game.mlx, &closefunc, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

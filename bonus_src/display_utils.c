@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   display_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vphilipp <vphilipp@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 17:28:26 by vphilipp          #+#    #+#             */
-/*   Updated: 2023/12/13 08:57:25 by vphilipp         ###   ########.fr       */
+/*   Created: 2023/12/12 13:53:37 by vphilipp          #+#    #+#             */
+/*   Updated: 2023/12/12 13:53:38 by vphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_game(t_game *game, char **argv)
+int	calc_x(t_game *game)
 {
-	*game = build_matrix(argv[1], *game);
-	set_start(game);
-	set_end(game);
-	game->img_pxl = 64;
-	game->mlx = mlx_init(calc_y(game), calc_x(game), "so_long", true);
-	init_textures(game);
-	init_player(game);
+	int	size_x;
+
+	size_x = game->img_pxl * game->lines;
+	return (size_x);
 }
 
-void	init_display(t_game *game)
+int	calc_y(t_game *game)
 {
-	display_wall(game, game->mlx);
-	display_ground(game, game->mlx);
-	display_collectible(game, game->mlx);
-	display_exit(game, game->mlx);
-	display_player(game, game->mlx);
+	int	size_y;
+
+	size_y = game->img_pxl * game->rows;
+	return (size_y);
+}
+
+int	check_bounds(int y, int x, t_game *game)
+{
+	if (x < 0 || x > game->rows - 1)
+		return (0);
+	else if (y < 0 || y > game->lines - 1)
+		return (0);
+	else if (game->matrix[y][x] != '1')
+		return (1);
+	return (0);
 }

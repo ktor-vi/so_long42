@@ -6,7 +6,7 @@
 /*   By: vphilipp <vphilipp@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:28:11 by vphilipp          #+#    #+#             */
-/*   Updated: 2023/12/13 12:17:29 by vphilipp         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:28:13 by vphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	check_collectable(t_game *game)
 	if (game->collectables == game->total_collectables
 		&& game->collectables > 0)
 		game->sprites[2]->enabled = true;
+
 	if (game->collectables == game->total_collectables
 		&& game->current_y == game->end_y && game->current_x == game->end_x)
 	{
-		printf("Well done, You finished with %d moves !\n", game->moves);
 		terminate_all(game);
 		exit(0);
 	}
@@ -68,7 +68,7 @@ void	verify(t_game *game)
 	flood_fill(game, game->current_x, game->current_y);
 	if (check_exit(game))
 	{
-		ft_putendl_fd("Map : path invalid", 2);
+		ft_putendl_fd("Map : exit invalid", 2);
 		terminate_all(game);
 		exit(1);
 	}
@@ -90,13 +90,4 @@ void	verify(t_game *game)
 		terminate_all(game);
 		exit(1);
 	}
-}
-
-void	closefunc(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	terminate_all(game);
-	exit(0);
 }

@@ -14,6 +14,7 @@ SRC = 	        src/main.c    \
 				src/init_player.c     \
 				src/init_textures.c   \
 				src/completion.c      \
+				src/fool_proof.c      \
 
 INC = includes/fdf.h
 
@@ -28,11 +29,10 @@ MLX_DIR = mlx
 MLX:= $(MLX_DIR)/libmlx42.a -ldl -lglfw -pthread -lm
 
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
-	# @make -C $(MLX_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
 	@cp $(LIBFT_DIR)/libftprintf.a .
 	@cp $(MLX_DIR)/libmlx42.a .
@@ -40,10 +40,6 @@ $(NAME): $(OBJ)
 	@rm libft.a
 	@rm libftprintf.a
 	@rm libmlx42.a
-	@make clean -C $(LIBFT_DIR)
-	@make clean
-%.o: %.c
-	$(CC) $(FLAGS) -I $(INC) -Imlx -c $< -o $@
 
 clean:
 	@make fclean -C $(LIBFT_DIR)

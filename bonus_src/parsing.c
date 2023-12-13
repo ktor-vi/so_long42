@@ -42,7 +42,7 @@ t_game	build_matrix(char *path, t_game game)
 		exit(1);
 	line = get_next_line(file);
 	if (!line)
-		return (empty_file(game), game);
+		exit(1);
 	game.lines = calc_lines(path);
 	game.rows = ft_memchr_gnl(line, '\n');
 	big = ft_calloc(1, 1);
@@ -105,3 +105,25 @@ void	set_end(t_game *game)
 		j++;
 	}
 }
+
+// void	set_collectables(t_game *game)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	j = 0;
+// 	i = 0;
+// 	while (j < game->lines)
+// 	{
+// 		while (i < game->rows)
+// 		{
+// 			if (game->ref_matrix[j][i] == 'C')
+// 			{
+// 				game->total_collectables++;
+// 			}
+// 			i++;
+// 		}
+// 		i = 0;
+// 		j++;
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: vphilipp <vphilipp@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:34:49 by vphilipp          #+#    #+#             */
-/*   Updated: 2023/12/12 17:34:51 by vphilipp         ###   ########.fr       */
+/*   Updated: 2023/12/13 08:57:21 by vphilipp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_game
 }				t_game;
 
 // INIT
+void			file_check(char *name);
 void			terminate_all(t_game *game);
 void			init_game(t_game *game, char **argv);
 void			init_display(t_game *game);
@@ -72,7 +73,6 @@ int				calc_y(t_game *game);
 t_game			build_matrix(char *path, t_game game);
 void			set_start(t_game *game);
 void			set_end(t_game *game);
-void			set_collectables(t_game *game);
 void			print_map(t_game game);
 // VERIF
 void			flood_fill(t_game *game, int x, int y);
@@ -82,8 +82,10 @@ int				check_shape(t_game *game);
 int				check_walls(t_game *game);
 int				check_collectables(t_game *game);
 void			verify(t_game *game);
+void			empty_file(t_game game);
 // CLEARING
 void			clear(t_game *game);
 void			clear_player(t_game *game);
 void			clear_tab(char **splitted);
+void			closefunc(void *param);
 #endif
