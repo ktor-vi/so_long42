@@ -66,7 +66,7 @@ INC = libft.h         \
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -arch arm64
 
 OBJ = $(SRC:.c=.o)
 

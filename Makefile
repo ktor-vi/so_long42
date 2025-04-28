@@ -20,14 +20,11 @@ INC = includes/fdf.h
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror  -g -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror -arch arm64 -g -fsanitize=address 
 
 OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = libft
-MLX_DIR = mlx
-MLX:= $(MLX_DIR)/libmlx42.a -ldl -lglfw -pthread -lm
-
 
 all: $(NAME)
 
@@ -35,8 +32,7 @@ $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
 	@cp $(LIBFT_DIR)/libftprintf.a .
-	@cp $(MLX_DIR)/libmlx42.a .
-	$(CC) $(FLAGS) $(OBJ)  libft.a libftprintf.a libmlx42.a $(MLX) -L"/Users/$(USER)/.brew/opt/glfw/lib/" -framework Cocoa -framework OpenGL -framework IOKit	-o $(NAME)
+	$(CC) $(FLAGS) $(OBJ)  libft.a libftprintf.a libmlx42.a -ldl -lglfw -pthread -lm -L"/opt/homebrew/Cellar/glfw/3.4/lib/" -framework Cocoa -framework OpenGL -framework IOKit	-o $(NAME)
 	@rm libft.a
 	@rm libftprintf.a
 	@rm libmlx42.a
